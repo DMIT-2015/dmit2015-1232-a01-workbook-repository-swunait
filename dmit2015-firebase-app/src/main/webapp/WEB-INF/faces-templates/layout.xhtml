@@ -39,11 +39,13 @@
 
     <div class="card">
         <h:form>
-            <p:growl id="growl"/>
+            <p:growl id="growl" />
 
             <p:menubar>
                 <!-- https://www.primefaces.org/showcase/icons.xhtml?jfwid=a2b2f -->
                 <p:menuitem value="Home" icon="pi pi-home" url="#{request.contextPath}/index.xhtml"/>
+
+                <p:menuitem value="Html Form"  url="#{request.contextPath}/facesHtmlForm.xhtml"/>
 
                 <p:submenu label="Video Games" icon="pi pi-file">
                     <p:menuitem value="List" icon="pi pi-list"
