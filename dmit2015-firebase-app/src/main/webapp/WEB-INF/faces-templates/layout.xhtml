@@ -52,6 +52,15 @@
 <!--                                url="#{request.contextPath}/videogames/create.xhtml"/>-->
                 </p:submenu>
 
+                <p:submenu label="Counter" >
+                    <p:menuitem value="Faces Counter"
+                                url="#{request.contextPath}/scopeCounter.xhtml"/>
+                    <p:menuitem value="Faces AJAX Counter"
+                                url="#{request.contextPath}/scopeCounter-ajax.xhtml"/>
+                    <p:menuitem value="PrimeFaces Counter"
+                                url="#{request.contextPath}/scopeCounter-primefaces"/>
+                </p:submenu>
+
             </p:menubar>
         </h:form>
     </div>

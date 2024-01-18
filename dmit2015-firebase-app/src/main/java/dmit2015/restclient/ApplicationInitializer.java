@@ -24,16 +24,25 @@ public class ApplicationInitializer {
         try {
             // Create a new Faker instance
             var faker = new Faker();
-            // Create 50 random VideoGames
-            for (int count = 1; count <= 50; count++) {
-                // Create a new VideoGame instance
-                var newGame = new VideoGame();
-                // Generate a title, genre, and platform for the newGame
-                newGame.setPlatform(faker.videoGame().platform());
-                newGame.setGenre(faker.videoGame().genre());
-                newGame.setTitle(faker.videoGame().title());
-                // Post the newGame to the REST API endpoints for Firebase Realtime DB
-                _gameRestClient.create(newGame);
+            var videogames = _gameRestClient.findAll();
+            if (videogames == null || videogames.isEmpty()) {
+                // Create 50 random VideoGames
+                for (int count = 1; count <= 20; count++) {
+                    // Create a new VideoGame instance
+                    var newGame = new VideoGame();
+                    // Generate a title, genre, and platform for the newGame
+                    newGame.setPlatform(faker.videoGame().platform());
+                    newGame.setGenre(faker.videoGame().genre());
+                    newGame.setTitle(faker.videoGame().title());
+                    // Post the newGame to the REST API endpoints for Firebase Realtime DB
+                    _gameRestClient.create(newGame);
+                }
+            } else {
+                if (videogames.size() >= 50) {
+                    for (var currentKey : videogames.keySet()) {
+                        _gameRestClient.delete(currentKey);
+                    }
+                }
             }
 
         } catch (Exception ex) {
