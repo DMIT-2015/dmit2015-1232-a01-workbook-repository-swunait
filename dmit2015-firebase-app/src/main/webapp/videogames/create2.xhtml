@@ -1,0 +1,112 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:faces="jakarta.faces"
+        xmlns:ui="jakarta.faces.facelets"
+        xmlns:f="jakarta.faces.core"
+        xmlns:h="jakarta.faces.html"
+        xmlns:pt="jakarta.faces.passthrough"
+        xmlns:cc="jakarta.faces.composite"
+        xmlns:c="jakarta.tags.core"
+        xmlns:fn="jakarta.tags.functions"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns:of="http://omnifaces.org/functions"
+        xmlns:p="http://primefaces.org/ui"
+        template="/WEB-INF/faces-templates/layout.xhtml"
+>
+
+    <ui:param name="title" value="VideoGame - Create"/>
+
+    <ui:define name="maincontent">
+
+        <h1>VideoGame - Create</h1>
+
+        <!--Display all messages in FacesContext -->
+        <p:messages id="messages">
+            <p:autoUpdate/>
+        </p:messages>
+        <p:growl id="growl"/>
+
+
+        <h:form prependId="false">
+            <p:focus context="formPanel"/>
+
+            <p:panel id="formPanel" header="Form Panel">
+                <div class="ui-fluid">
+
+                    <div class="field">
+                        <p:outputLabel for="@next" >Title</p:outputLabel>
+                        <p:inputText id="title" value="#{currentVideoGameCreateView.newVideoGame.title}"/>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <p:outputLabel for="@next" value="Genre"/>
+                        <p:selectOneMenu id="option" value="#{currentVideoGameCreateView.newVideoGame.genre}">
+                            <f:selectItem itemLabel="Action" itemValue="Action"/>
+                            <f:selectItem itemLabel="Adventure" itemValue="Adventure"/>
+                            <f:selectItem itemLabel="Flighting" itemValue="Flighting"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <p:outputLabel for="@next" value="Platform"/>
+                        <p:selectOneMenu id="platform" value="#{currentVideoGameCreateView.newVideoGame.platform}">
+                            <f:selectItem itemLabel="Nintendo Switch" itemValue="intendo Switch"/>
+                            <f:selectItem itemLabel="PS5" itemValue="PS5"/>
+                            <f:selectItem itemLabel="XBox Series X" itemValue="XBox Series X"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <!--                    <div class="field">-->
+                    <!--                        <p:outputLabel for="@next" value="Select Radios"/>-->
+                    <!--                        <p:selectOneRadio value="TODO Faces EL">-->
+                    <!--                            <f:selectItems value="TODO Faces EL"-->
+                    <!--                                           var="currentSelectItem"-->
+                    <!--                                           itemLabel="#{currentSelectItem}"-->
+                    <!--                                           itemValue="#{currentSelectItem}" />-->
+                    <!--                        </p:selectOneRadio>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="field">-->
+                    <!--                        <p:selectBooleanCheckbox  id="booleanCheckbox"-->
+                    <!--                                                  itemLabel="Check me out"-->
+                    <!--                                                  value="TODO Faces EL"/>-->
+                    <!--                    </div>-->
+
+                    <!--                    <div class="field col-12 md:col-2">-->
+                    <!--                        <p:outputLabel for="dateValue" >Date Value</p:outputLabel>-->
+                    <!--                        <p:datePicker id="dateValue"-->
+                    <!--                                      value=""-->
+                    <!--                                      pattern="yyyy-MM-dd"-->
+                    <!--                                      showIcon="true"-->
+                    <!--                                      monthNavigator="true"-->
+                    <!--                                      yearNavigator="true"-->
+                    <!--                        >-->
+                    <!--                            <f:convertDateTime type="localDate" pattern="yyyy-MM-dd" />-->
+                    <!--                        </p:datePicker>-->
+                    <!--                    </div>-->
+
+                    <div class="formgroup-inline">
+                        <div class="field">
+                            <p:commandButton value="Submit"
+                                             update=":messages :growl"
+                                             action="#{currentVideoGameCreateView.onCreateNew()}"
+                            >
+                            </p:commandButton>
+                        </div>
+
+                        <div class="field">
+                            <p:commandButton value="Clear"
+                                             update="@form "
+                                             styleClass="ui-button-secondary"
+                                             actionListener="#{currentVideoGameCreateView.onClearForm()}"
+                            >
+                            </p:commandButton>
+                        </div>
+                    </div>
+
+                </div>
+
+            </p:panel>
+
+        </h:form>
+
+    </ui:define>
+
+</ui:composition>
