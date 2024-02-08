@@ -3,6 +3,12 @@ package dmit2015.model;
 import lombok.Getter;
 import lombok.Setter;
 
+/**
+ * This class model a Rectangle shape.
+ *
+ * @author Sam Wu
+ * @version 2024.02.06
+ */
 public class Rectangle {
 
     @Getter @Setter
