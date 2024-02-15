@@ -59,7 +59,9 @@ public class CountryEditView implements Serializable {
                 if (optionalCountry.isPresent()) {
                     existingCountry = optionalCountry.orElseThrow();
                     // Set the selectedRegionId
-                    selectedRegionId = existingCountry.getRegionsByRegionId().getRegionId();
+                    if (existingCountry.getRegionsByRegionId() != null) {
+                        selectedRegionId = existingCountry.getRegionsByRegionId().getRegionId();
+                    }
 
                 } else {
                     Faces.redirect(Faces.getRequestURI().substring(0, Faces.getRequestURI().lastIndexOf("/")) + "/index.xhtml");
