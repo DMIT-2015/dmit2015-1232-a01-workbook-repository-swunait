@@ -70,7 +70,7 @@ public class RegionSeleniumIT {
 
     private void setPrimeFacesDatePickerValue(String fieldId, String fieldValue) {
         // The text field for the p:datePicker component has a suffix of "_input" appended to the end of the field id.
-        final String datePickerTextFieldId = String.format("%_input", fieldId);
+        final String datePickerTextFieldId = String.format("%s_input", fieldId);
         WebElement element = driver.findElement(By.id(datePickerTextFieldId));
         element.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         element.sendKeys(Keys.chord(Keys.BACK_SPACE));
@@ -171,7 +171,7 @@ public class RegionSeleniumIT {
 
         // Wait for 3 seconds and verify navigate has been redirected to the listing page
         var wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        var facesMessages = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ui-messages-info-summary")));
+        var facesMessages = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-messages-info-summary")));
         // Verify the title of the page
         assertThat(driver.getTitle())
                 .isEqualToIgnoringCase("Region - List");

@@ -10,6 +10,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -24,8 +25,6 @@ public class CountrySeleniumIT {
 
     private static WebDriver driver;
 
-    static int actionCommandColumnIndex = 4;
-
     @BeforeAll
     static void beforeAllTests() {
         WebDriverManager.chromedriver().setup();
@@ -33,8 +32,11 @@ public class CountrySeleniumIT {
         chromeOptions.addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);
 
-        // https://www.omgubuntu.co.uk/2022/04/how-to-install-firefox-deb-apt-ubuntu-22-04
-//        WebDriverManager.firefoxdriver().setup();
+//        System.setProperty("webdriver.gecko.driver", "/snap/bin/geckodriver");
+//        WebDriverManager
+//                .firefoxdriver()
+////                .driverVersion("0.33.0")
+//                .setup();
 //        driver = new FirefoxDriver();
     }
 
@@ -79,7 +81,7 @@ public class CountrySeleniumIT {
         var waitSelectOneMenu = new WebDriverWait(driver, Duration.ofSeconds(3));
         // The id of the items for p:selectOneMenu has a suffix of "_items" appended to the id of the p:selectOneMenu
         String selectOneMenuItemsId = String.format("%s_items", fieldId);
-        var selectOneMenuItems = waitSelectOneMenu.until(ExpectedConditions.presenceOfElementLocated(By.id(selectOneMenuItemsId)));
+        var selectOneMenuItems = waitSelectOneMenu.until(ExpectedConditions.visibilityOfElementLocated(By.id(selectOneMenuItemsId)));
         // The value for each item is stored a attribute named "data-label"
         String selectItemXPath = String.format("*[@data-label=\"%s\"]", fieldValue);
         var selectItem = selectOneMenuItems.findElement(By.xpath(selectItemXPath));
@@ -168,7 +170,7 @@ public class CountrySeleniumIT {
 
         // Wait for 3 seconds and verify navigate has been redirected to the listing page
         var wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        var facesMessages = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ui-messages-info-summary")));
+        var facesMessages = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-messages-info-summary")));
         // Verify the title of the page
         assertThat(driver.getTitle())
                 .isEqualToIgnoringCase("Country - List");
@@ -321,7 +323,7 @@ public class CountrySeleniumIT {
         driver.findElement(By.id("updateButton")).click();
 
         var wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        var feedbackMessages = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ui-messages-info-summary")));
+        var feedbackMessages = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-messages-info-summary")));
         assertThat(driver.getTitle())
                 .isEqualToIgnoringCase("Country - List");
         assertThat(feedbackMessages.getText())
@@ -359,12 +361,12 @@ public class CountrySeleniumIT {
 
         var wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 
-        var yesConfirmationButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ui-confirmdialog-yes")));
+        var yesConfirmationButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-confirmdialog-yes")));
         Thread.sleep(500);
         yesConfirmationButton.click();
 
         wait = new WebDriverWait(driver, Duration.ofSeconds(3));
-        var feedbackMessages = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("ui-messages-info-summary")));
+        var feedbackMessages = wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("ui-messages-info-summary")));
         assertThat(driver.getTitle())
                 .isEqualToIgnoringCase("Country - List");
         assertThat(feedbackMessages.getText())
