@@ -1,0 +1,59 @@
+// Firebase Realtime Database stores JSON data in a JSON Tree structure
+
+### Push new JSON data to the path
+POST https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames.json
+Content-Type: application/json
+
+{
+  "platform": "Nintendo Switch",
+  "title": "Super Smash Bros",
+  "genre": "fighting"
+}
+
+### Push new JSON data to the path
+POST https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames.json
+Content-Type: application/json
+
+{
+  "platform": "PC Games",
+  "title": "Diablo IV",
+  "genre": "rpg"
+}
+
+### Push new JSON data to the path
+POST https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames.json
+Content-Type: application/json
+
+{
+  "platform": "XBox One",
+  "title": "Starfield",
+  "genre": "bad"
+}
+
+
+### Read JSON data by path
+GET https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames.json
+
+### Read JSON data by path and primary key value
+GET https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames/-NnywSwYOpIIDMZPcCMF.json
+
+### Write JSON data - will replace all properties with the properties in the request body - if you miss a property it will be removed
+PUT https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames/-NnywSwYOpIIDMZPcCMF.json
+Content-Type: application/json
+
+{
+  "genre": "good",
+  "title": "Starfield",
+  "platform": "XBox One"
+}
+
+### Remove JSON data - use this if you want to delete data
+DELETE https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames/-NnywSwYOpIIDMZPcCMF.json
+
+### Update data - use this if you want to update some of the properties but not all of them
+PATCH https://dmit2015-1232-swu01-default-rtdb.firebaseio.com/videogames/-NnyyE2pDZH4mpS8uQe3.json
+Content-Type: application/json
+
+{
+  "genre": "RPG"
+}

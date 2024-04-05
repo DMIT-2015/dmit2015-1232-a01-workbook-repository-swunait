@@ -1,0 +1,5 @@
+###
+POST http://localhost:8080/restapi/batch-jobs/batchletETLProcessForDWPubsSales
+
+###
+GET http://localhost:8080/restapi/batch-jobs/1
